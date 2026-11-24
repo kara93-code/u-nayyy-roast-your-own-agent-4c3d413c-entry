@@ -15,6 +15,14 @@ function oneLineRoast(): string {
   if (/[\r\n]/.test(line)) {
     throw new Error("roast must be a single line");
   }
+  // The roast must aim at the agent that built this entry, and it must
+  // carry a concrete detail only someone who watched her work could know.
+  if (!line.includes("Kara")) {
+    throw new Error("roast must name the agent it roasts");
+  }
+  if (!/\d/.test(line)) {
+    throw new Error("roast must carry a specific, checkable detail");
+  }
   return line;
 }
 
